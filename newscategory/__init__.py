@@ -1,0 +1,1 @@
+from .newscategories import NewsCategories

@@ -1,0 +1,9 @@
+*.pyc
+*.ipynb_checkpoints
+.env
+*__pycache__/
+*venv/
+trainingllm/*.env
+/models
+tokenizer
+outputs/checkpoint-50
