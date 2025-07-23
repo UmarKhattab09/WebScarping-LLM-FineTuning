@@ -14,6 +14,21 @@ import numpy as np
 from transformers import DataCollatorWithPadding
 from sklearn.model_selection import train_test_split
 
+"""
+The training.py is not working properly. It works till TokenizedDataset, will fix if given chance
+You can train it in trainingllm.ipynb. Increase EPOCHS, DATASET. OTHER HYPER PARAMETERS !!
+
+"""
+
+
+
+
+
+
+
+
+
+
 class LLM:
     model_name="meta-llama/Llama-3.2-1B"
 
@@ -31,7 +46,7 @@ class LLM:
  
     
     def load_model(self):
-        hf_token = "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"
+        hf_token = "TOKEN"
         huggingface_hub.login(hf_token)
         
     
