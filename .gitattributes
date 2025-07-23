@@ -1,0 +1,2 @@
+*.safetensor filter=lfs diff=lfs merge=lfs -text
+trainingllm/models/news_classifier_model/*.safetensor filter=lfs diff=lfs merge=lfs -text
