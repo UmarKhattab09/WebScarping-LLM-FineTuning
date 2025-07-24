@@ -22,3 +22,4 @@ Carter has developed a 40-point self-assessment survey for people to figure out 
 result = classifier.predict(text)
 
 print(result)
+

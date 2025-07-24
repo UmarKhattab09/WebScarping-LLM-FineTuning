@@ -1,1 +1,2 @@
 from .newscategories import NewsCategories
+from .newscategoriesimpact import NewsCategoriesImpact
