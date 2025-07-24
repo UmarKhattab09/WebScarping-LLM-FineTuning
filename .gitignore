@@ -7,3 +7,4 @@ trainingllm/*.env
 /models
 tokenizer
 outputs/checkpoint-50
+/lib

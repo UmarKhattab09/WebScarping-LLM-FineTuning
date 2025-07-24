@@ -1,7 +1,9 @@
-
+import numpy as np
 
 import pandas as pd
 from bs4 import BeautifulSoup
+from transformers import pipeline
+
 import requests
 class WebScraping:
     def __init__(self,count):
@@ -64,6 +66,18 @@ class WebScraping:
         df.to_csv()
         return df
              
+
+
+    def DetectUrgency(self,News):
+        zero_shot = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+        labels = ["Critical", "High", "Medium", "Low"]
+        res = zero_shot(News,labels)
+        loc = np.argmax(res['scores'])
+        output = res['labels'][loc]
+        return output
+    
+
+
     def dataframe(self):
         links = {}
         for k,v in self.url_dict.items():
@@ -78,16 +92,40 @@ class WebScraping:
 
         df = self.createDataFrame(dataframedata)
         df.to_csv(f"outputs/{self.count}.csv")
+
+
         return df
+    
+
+    def slowdataframe(self):
+        links = {}
+        for k,v in self.url_dict.items():
+            test = self.url_extractor(v)
+            links[k] = test
+        extract = {}
+        for k,v in links.items():
+            extract[k] = self.extractinglinks(v)
+        dataframedata = {}
+        for k,v in extract.items():
+            dataframedata[k] = self.storyextractor(v)
+
+        df = self.createDataFrame(dataframedata)
+        df['Impact'] = df['News'].apply(self.DetectUrgency)
+        df.to_csv(f"outputs/{self.count}_iMPACT.csv")
+        return df
+
+
+
     
 
         
             
 # test = WebScraping(count=2)
 
-# x = test.dataframe()
+# # x = test.dataframe()
+# x = test.slowdataframe()
 # print(x)
-# save = test.outputdf()
+
 
 
 
